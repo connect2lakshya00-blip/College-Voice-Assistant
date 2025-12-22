@@ -1,0 +1,10 @@
+{
+  "monday": [
+    {"time": "09:00-10:00", "course": "AI", "room": "C101"},
+    {"time": "10:00-11:00", "course": "DBMS", "room": "C102"}
+  ],
+  "tuesday": [
+    {"time": "09:00-10:00", "course": "OS", "room": "C103"},
+    {"time": "10:00-11:00", "course": "ML", "room": "C101"}
+  ]
+}

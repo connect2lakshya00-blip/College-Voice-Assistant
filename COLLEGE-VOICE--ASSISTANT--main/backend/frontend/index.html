@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Voice Assistant for College</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    #log { white-space: pre-wrap; padding: 10px; background: #eee; height: 200px; overflow-y: auto; }
+    button { padding: 10px 20px; margin: 10px 5px; }
+  </style>
+</head>
+<body>
+  <h2>AI Voice Assistant for College Automation</h2>
+
+  <button id="startButton">Start Listening</button>
+  <button id="stopButton">Stop</button>
+
+  <div id="log"></div>
+
+<script>
+const logBox = document.getElementById("log");
+
+function addLog(text) {
+  logBox.textContent += text + "\n";
+  logBox.scrollTop = logBox.scrollHeight;
+}
+
+let recognition;
+
+if ("webkitSpeechRecognition" in window) {
+  recognition = new webkitSpeechRecognition();
+  recognition.lang = "en-IN";
+  recognition.continuous = false;
+  recognition.interimResults = false;
+
+  recognition.onresult = function(event) {
+    const text = event.results[0][0].transcript;
+    addLog("You: " + text);
+    sendToBackend(text);
+  };
+
+  recognition.onerror = function(event) {
+    addLog("Error: " + event.error);
+  };
+} else {
+  addLog("Your browser does not support Speech Recognition. Use Chrome.");
+}
+
+document.getElementById("startButton").onclick = () => recognition.start();
+document.getElementById("stopButton").onclick = () => recognition.stop();
+
+
+async function sendToBackend(text) {
+  let res = await fetch("http://localhost:8000/api/voice", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ text: text, user: "lakshya sharma" })
+  });
+
+  let data = await res.json();
+  addLog("Assistant: " + data.reply);
+  speak(data.reply);
+}
+
+function speak(text) {
+  const msg = new SpeechSynthesisUtterance(text);
+  msg.lang = "en-IN";
+  speechSynthesis.speak(msg);
+}
+</script>
+</body>
+</html>

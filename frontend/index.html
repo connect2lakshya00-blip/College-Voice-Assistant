@@ -1190,7 +1190,7 @@
         </div>
 
         <div class="nav-label">Administration</div>
-        <a href="admin.html" class="nav-item" style="text-decoration:none;color:inherit">
+        <a href="/admin" class="nav-item" style="text-decoration:none;color:inherit">
           <span class="nav-icon">🛡️</span>
           <span>Admin Panel</span>
         </a>
@@ -1205,7 +1205,7 @@
           <button class="header-btn" id="refreshBtn" title="Refresh">🔄</button>
           <button class="header-btn" title="Notifications">🔔<span class="notification-dot"></span></button>
           <button class="header-btn" id="themeToggle" title="Theme">🌙</button>
-          <a href="admin.html" class="header-btn" title="Admin Panel" style="text-decoration:none;color:inherit">🛡️</a>
+          <a href="/admin" class="header-btn" title="Admin Panel" style="text-decoration:none;color:inherit">🛡️</a>
         </div>
       </header>
 
@@ -1350,7 +1350,7 @@
     // Load Student Data
     async function loadStudentData() {
       try {
-        const res = await fetch('http://localhost:8000/api/voice', {
+        const res = await fetch('/api/voice', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ text: 'profile', user: 'lakshya sharma' })
@@ -1365,7 +1365,7 @@
     // Fetch data from API
     async function fetchData(query) {
       try {
-        const res = await fetch('http://localhost:8000/api/voice', {
+        const res = await fetch('/api/voice', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ text: query, user: 'lakshya sharma' })
@@ -1737,7 +1737,7 @@
         container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
 
         try {
-          const res = await fetch('http://localhost:8000/api/placements');
+          const res = await fetch('/api/placements');
           const data = await res.json();
 
           let html = `<div class="dashboard-grid">`;
@@ -1770,7 +1770,7 @@
         container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
 
         try {
-          const res = await fetch('http://localhost:8000/api/events');
+          const res = await fetch('/api/events');
           const data = await res.json();
 
           let html = `<div class="dashboard-grid">`;
@@ -1800,7 +1800,7 @@
         container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
 
         try {
-          const res = await fetch('http://localhost:8000/api/faculty');
+          const res = await fetch('/api/faculty');
           const data = await res.json();
 
           let html = `<div class="dashboard-grid">`;
@@ -1830,8 +1830,8 @@
 
         try {
           const [resMenu, resOrders] = await Promise.all([
-            fetch('http://localhost:8000/api/cafeteria'),
-            fetch('http://localhost:8000/api/orders?student_key=lakshya%20sharma')
+            fetch('/api/cafeteria'),
+            fetch('/api/orders?student_key=lakshya%20sharma')
           ]);
 
           const menuData = await resMenu.json();
@@ -2016,7 +2016,7 @@
     async function sendToBackend(text) {
       showTyping();
       try {
-        const res = await fetch('http://localhost:8000/api/voice', {
+        const res = await fetch('/api/voice', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ text, user: 'lakshya sharma' })
@@ -2101,7 +2101,7 @@
       const items = cart.map(i => i.item);
 
       try {
-        const res = await fetch('http://localhost:8000/api/order', {
+        const res = await fetch('/api/order', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -2123,7 +2123,7 @@
       if (!confirm(`Book appointment with ${profName}?`)) return;
 
       try {
-        const res = await fetch('http://localhost:8000/api/appointment', {
+        const res = await fetch('/api/appointment', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

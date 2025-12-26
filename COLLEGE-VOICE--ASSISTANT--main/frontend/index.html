@@ -1,0 +1,2177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduConnect | Smart Campus Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #030712;
+      --bg-secondary: #0a0f1a;
+      --bg-card: #111827;
+      --bg-elevated: #1f2937;
+      --bg-hover: #374151;
+      --accent-primary: #6366f1;
+      --accent-secondary: #818cf8;
+      --accent-tertiary: #a5b4fc;
+      --accent-glow: rgba(99, 102, 241, 0.35);
+      --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+      --text-primary: #f9fafb;
+      --text-secondary: #e5e7eb;
+      --text-muted: #9ca3af;
+      --text-dim: #6b7280;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+      --info: #3b82f6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .bg-effects {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 100% 0%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 100%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+    }
+
+    .app-layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      z-index: 50;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar-header {
+      padding: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-gradient);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-icon svg {
+      width: 22px;
+      height: 22px;
+      fill: white;
+    }
+
+    .logo-text {
+      font-size: 1.2rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .profile-card {
+      margin: 12px;
+      padding: 14px;
+      background: var(--bg-card);
+      border-radius: 14px;
+      border: 1px solid var(--border-color);
+    }
+
+    .profile-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .profile-avatar {
+      width: 42px;
+      height: 42px;
+      background: var(--accent-gradient);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .profile-details h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .profile-details p {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .profile-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+
+    .stat-item {
+      padding: 8px;
+      background: var(--bg-elevated);
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent-secondary);
+    }
+
+    .stat-label {
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .nav-section {
+      padding: 12px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .nav-label {
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin: 12px 0 6px 10px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: 2px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .nav-item:hover {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+    }
+
+    .nav-item.active {
+      background: rgba(99, 102, 241, 0.15);
+      color: var(--accent-secondary);
+    }
+
+    .nav-item.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 20px;
+      background: var(--accent-primary);
+      border-radius: 0 3px 3px 0;
+    }
+
+    .nav-icon {
+      font-size: 1.1rem;
+      width: 22px;
+      text-align: center;
+    }
+
+    .nav-badge {
+      margin-left: auto;
+      padding: 2px 7px;
+      background: var(--error);
+      color: white;
+      font-size: 0.6rem;
+      font-weight: 700;
+      border-radius: 8px;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      margin-left: 260px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .top-header {
+      padding: 14px 20px;
+      background: rgba(17, 24, 39, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .page-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .header-btn {
+      width: 38px;
+      height: 38px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 1rem;
+      position: relative;
+    }
+
+    .header-btn:hover {
+      background: var(--bg-hover);
+      border-color: var(--accent-primary);
+    }
+
+    .notification-dot {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 7px;
+      height: 7px;
+      background: var(--error);
+      border-radius: 50%;
+    }
+
+    /* Content Pages */
+    .content-area {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .page-content {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .page-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Dashboard Grid */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .dash-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 18px;
+      transition: all 0.2s ease;
+    }
+
+    .dash-card:hover {
+      border-color: var(--accent-primary);
+      transform: translateY(-2px);
+    }
+
+    .dash-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .dash-card-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .dash-card-title .icon {
+      font-size: 1.2rem;
+    }
+
+    .dash-card-badge {
+      padding: 3px 8px;
+      background: var(--accent-primary);
+      color: white;
+      font-size: 0.6rem;
+      font-weight: 600;
+      border-radius: 6px;
+    }
+
+    /* Stats Cards */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .stat-card .icon {
+      width: 44px;
+      height: 44px;
+      margin: 0 auto 10px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .stat-card .value {
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+
+    .stat-card .label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .stat-card.purple .icon {
+      background: rgba(139, 92, 246, 0.2);
+    }
+
+    .stat-card.purple .value {
+      color: #a78bfa;
+    }
+
+    .stat-card.blue .icon {
+      background: rgba(59, 130, 246, 0.2);
+    }
+
+    .stat-card.blue .value {
+      color: #60a5fa;
+    }
+
+    .stat-card.green .icon {
+      background: rgba(16, 185, 129, 0.2);
+    }
+
+    .stat-card.green .value {
+      color: #34d399;
+    }
+
+    .stat-card.orange .icon {
+      background: rgba(249, 115, 22, 0.2);
+    }
+
+    .stat-card.orange .value {
+      color: #fb923c;
+    }
+
+    /* Data Table */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .data-table th {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .data-table td {
+      font-size: 0.85rem;
+    }
+
+    .data-table tr:hover {
+      background: var(--bg-elevated);
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+      height: 8px;
+      background: var(--bg-elevated);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+
+    .progress-fill.green {
+      background: var(--success);
+    }
+
+    .progress-fill.yellow {
+      background: var(--warning);
+    }
+
+    .progress-fill.red {
+      background: var(--error);
+    }
+
+    .progress-fill.blue {
+      background: var(--info);
+    }
+
+    .progress-fill.purple {
+      background: var(--accent-primary);
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    .badge.success {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--success);
+    }
+
+    .badge.warning {
+      background: rgba(245, 158, 11, 0.2);
+      color: var(--warning);
+    }
+
+    .badge.error {
+      background: rgba(239, 68, 68, 0.2);
+      color: var(--error);
+    }
+
+    .badge.info {
+      background: rgba(59, 130, 246, 0.2);
+      color: var(--info);
+    }
+
+    .badge.purple {
+      background: rgba(139, 92, 246, 0.2);
+      color: var(--accent-secondary);
+    }
+
+    /* List Items */
+    .list-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: var(--bg-elevated);
+      border-radius: 10px;
+      margin-bottom: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .list-item:hover {
+      transform: translateX(4px);
+    }
+
+    .list-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .list-content {
+      flex: 1;
+    }
+
+    .list-content h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .list-content p {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    /* Chat Section */
+    .chat-container {
+      display: flex;
+      gap: 20px;
+      height: calc(100vh - 120px);
+    }
+
+    .chat-main {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-sidebar {
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .chat-header {
+      padding: 14px 18px;
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chat-avatar {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-gradient);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .chat-info h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .chat-info p {
+      font-size: 0.7rem;
+      color: var(--success);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .online-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--success);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .message {
+      display: flex;
+      gap: 10px;
+      animation: msgIn 0.3s ease;
+    }
+
+    @keyframes msgIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message.user {
+      flex-direction: row-reverse;
+    }
+
+    .msg-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .message.bot .msg-avatar {
+      background: var(--accent-gradient);
+    }
+
+    .message.user .msg-avatar {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-color);
+    }
+
+    .msg-content {
+      max-width: 70%;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .message.bot .msg-content {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-color);
+      border-bottom-left-radius: 4px;
+    }
+
+    .message.user .msg-content {
+      background: var(--accent-gradient);
+      color: white;
+      border-bottom-right-radius: 4px;
+    }
+
+    .typing-dots {
+      display: flex;
+      gap: 4px;
+      padding: 12px 16px;
+    }
+
+    .typing-dots span {
+      width: 7px;
+      height: 7px;
+      background: var(--accent-secondary);
+      border-radius: 50%;
+      animation: bounce 1.4s infinite;
+    }
+
+    .typing-dots span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-dots span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      60%,
+      100% {
+        transform: translateY(0);
+      }
+
+      30% {
+        transform: translateY(-6px);
+      }
+    }
+
+    .chat-input-area {
+      padding: 14px;
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border-color);
+    }
+
+    .input-container {
+      display: flex;
+      gap: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 4px 4px 4px 14px;
+    }
+
+    .input-container:focus-within {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .input-container input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      font-family: inherit;
+      padding: 8px 0;
+    }
+
+    .input-container input::placeholder {
+      color: var(--text-dim);
+    }
+
+    .input-btns {
+      display: flex;
+      gap: 4px;
+    }
+
+    .input-btn {
+      width: 36px;
+      height: 36px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      font-size: 1rem;
+    }
+
+    .btn-mic {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+    }
+
+    .btn-mic:hover {
+      background: var(--bg-hover);
+      color: var(--accent-secondary);
+    }
+
+    .btn-mic.active {
+      background: var(--success);
+      color: white;
+    }
+
+    .btn-send {
+      background: var(--accent-gradient);
+      color: white;
+    }
+
+    .btn-send:hover {
+      transform: scale(1.05);
+    }
+
+    .quick-chips {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      padding: 6px 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .chip:hover {
+      background: var(--bg-hover);
+      color: var(--accent-secondary);
+      border-color: var(--accent-primary);
+    }
+
+    /* Info Cards */
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .info-card-header {
+      padding: 12px 14px;
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-card-body {
+      padding: 14px;
+    }
+
+    /* Attendance Ring */
+    .attendance-ring {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 12px;
+      position: relative;
+    }
+
+    .attendance-ring svg {
+      transform: rotate(-90deg);
+    }
+
+    .attendance-ring circle {
+      fill: none;
+      stroke-width: 8;
+    }
+
+    .attendance-ring .bg {
+      stroke: var(--bg-elevated);
+    }
+
+    .attendance-ring .progress {
+      stroke: url(#grad);
+      stroke-linecap: round;
+      stroke-dasharray: 251;
+      stroke-dashoffset: 38;
+    }
+
+    .attendance-value {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .attendance-value .percent {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--accent-secondary);
+    }
+
+    .attendance-value .label {
+      font-size: 0.6rem;
+      color: var(--text-muted);
+    }
+
+    /* Toast */
+    .toast-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .toast {
+      padding: 12px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      animation: toastIn 0.3s ease;
+    }
+
+    @keyframes toastIn {
+      from {
+        opacity: 0;
+        transform: translateX(100px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .toast.success {
+      border-left: 3px solid var(--success);
+    }
+
+    .toast.error {
+      border-left: 3px solid var(--error);
+    }
+
+    .toast.info {
+      border-left: 3px solid var(--info);
+    }
+
+    /* Loading */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid var(--border-color);
+      border-top-color: var(--accent-primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Mobile */
+    .mobile-toggle {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      background: var(--accent-gradient);
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      z-index: 60;
+      font-size: 1.3rem;
+      color: white;
+    }
+
+    /* Light Mode */
+    body.light {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-elevated: #f8fafc;
+      --bg-hover: #e2e8f0;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --text-dim: #94a3b8;
+      --border-color: rgba(0, 0, 0, 0.08);
+    }
+
+    @media (max-width: 1100px) {
+      .chat-sidebar {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .mobile-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-effects"></div>
+  <div class="toast-container" id="toastContainer"></div>
+
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z" />
+            </svg>
+          </div>
+          <span class="logo-text">EduConnect</span>
+        </div>
+      </div>
+
+      <div class="profile-card">
+        <div class="profile-info">
+          <div class="profile-avatar">LS</div>
+          <div class="profile-details">
+            <h3>Lakshya Sharma</h3>
+            <p>B.Tech CSE • 3rd Year</p>
+          </div>
+        </div>
+        <div class="profile-stats">
+          <div class="stat-item">
+            <div class="stat-value" id="sidebarAttendance">85%</div>
+            <div class="stat-label">Attendance</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="sidebarCGPA">8.5</div>
+            <div class="stat-label">CGPA</div>
+          </div>
+        </div>
+      </div>
+
+      <nav class="nav-section">
+        <div class="nav-label">Main Menu</div>
+        <div class="nav-item active" data-page="assistant">
+          <span class="nav-icon">🤖</span>
+          <span>AI Assistant</span>
+        </div>
+        <div class="nav-item" data-page="dashboard">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </div>
+        <div class="nav-item" data-page="attendance">
+          <span class="nav-icon">📋</span>
+          <span>Attendance</span>
+        </div>
+        <div class="nav-item" data-page="timetable">
+          <span class="nav-icon">📅</span>
+          <span>Timetable</span>
+        </div>
+        <div class="nav-item" data-page="exams">
+          <span class="nav-icon">📝</span>
+          <span>Exams</span>
+          <span class="nav-badge">8</span>
+        </div>
+        <div class="nav-item" data-page="grades">
+          <span class="nav-icon">🎓</span>
+          <span>Grades</span>
+        </div>
+
+        <div class="nav-label">Resources</div>
+        <div class="nav-item" data-page="library">
+          <span class="nav-icon">📚</span>
+          <span>Library</span>
+          <span class="nav-badge">1</span>
+        </div>
+        <div class="nav-item" data-page="notices">
+          <span class="nav-icon">📢</span>
+          <span>Notices</span>
+          <span class="nav-badge">6</span>
+        </div>
+        <div class="nav-item" data-page="fees">
+          <span class="nav-icon">💰</span>
+          <span>Fee Payment</span>
+        </div>
+        <div class="nav-item" data-page="courses">
+          <span class="nav-icon">📖</span>
+          <span>Courses</span>
+        </div>
+
+        <div class="nav-label">Services</div>
+        <div class="nav-item" data-page="placements">
+          <span class="nav-icon">💼</span>
+          <span>Placements</span>
+        </div>
+        <div class="nav-item" data-page="events">
+          <span class="nav-icon">🎭</span>
+          <span>Events</span>
+        </div>
+        <div class="nav-item" data-page="faculty">
+          <span class="nav-icon">👨‍🏫</span>
+          <span>Faculty</span>
+        </div>
+        <div class="nav-item" data-page="cafeteria">
+          <span class="nav-icon">🍔</span>
+          <span>Cafeteria</span>
+        </div>
+        <div class="nav-item" data-page="cgpa_calc">
+          <span class="nav-icon">🔢</span>
+          <span>CGPA Calc</span>
+        </div>
+
+        <div class="nav-label">Account</div>
+        <div class="nav-item" data-page="profile">
+          <span class="nav-icon">👤</span>
+          <span>Profile</span>
+        </div>
+
+        <div class="nav-label">Administration</div>
+        <a href="admin.html" class="nav-item" style="text-decoration:none;color:inherit">
+          <span class="nav-icon">🛡️</span>
+          <span>Admin Panel</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="top-header">
+        <h1 class="page-title" id="pageTitle">AI Assistant</h1>
+        <div class="header-actions">
+          <button class="header-btn" id="refreshBtn" title="Refresh">🔄</button>
+          <button class="header-btn" title="Notifications">🔔<span class="notification-dot"></span></button>
+          <button class="header-btn" id="themeToggle" title="Theme">🌙</button>
+          <a href="admin.html" class="header-btn" title="Admin Panel" style="text-decoration:none;color:inherit">🛡️</a>
+        </div>
+      </header>
+
+      <div class="content-area">
+        <!-- AI Assistant Page -->
+        <div class="page-content active" id="page-assistant">
+          <div class="chat-container">
+            <div class="chat-main">
+              <div class="chat-header">
+                <div class="chat-avatar">🤖</div>
+                <div class="chat-info">
+                  <h3>Campus AI Assistant</h3>
+                  <p><span class="online-dot"></span> Online</p>
+                </div>
+              </div>
+              <div class="chat-messages" id="chatMessages"></div>
+              <div class="chat-input-area">
+                <div class="input-container">
+                  <input type="text" id="chatInput" placeholder="Ask me anything..." autocomplete="off">
+                  <div class="input-btns">
+                    <button class="input-btn btn-mic" id="micBtn">🎤</button>
+                    <button class="input-btn btn-send" id="sendBtn">➤</button>
+                  </div>
+                </div>
+                <div class="quick-chips">
+                  <button class="chip" data-q="Check my attendance">📊 Attendance</button>
+                  <button class="chip" data-q="Show timetable for today">📅 Today</button>
+                  <button class="chip" data-q="Upcoming exams">📝 Exams</button>
+                  <button class="chip" data-q="My grades">🎓 Grades</button>
+                </div>
+              </div>
+            </div>
+            <aside class="chat-sidebar">
+              <div class="info-card">
+                <div class="info-card-header">📊 Quick Stats</div>
+                <div class="info-card-body">
+                  <div class="attendance-ring">
+                    <svg width="100" height="100" viewBox="0 0 100 100">
+                      <defs>
+                        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stop-color="#6366f1" />
+                          <stop offset="100%" stop-color="#8b5cf6" />
+                        </linearGradient>
+                      </defs>
+                      <circle class="bg" cx="50" cy="50" r="40" />
+                      <circle class="progress" cx="50" cy="50" r="40" />
+                    </svg>
+                    <div class="attendance-value">
+                      <div class="percent">85%</div>
+                      <div class="label">Attendance</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="info-card">
+                <div class="info-card-header">📝 Next Exam</div>
+                <div class="info-card-body">
+                  <div class="list-item" style="margin:0">
+                    <div class="list-icon" style="background:var(--accent-gradient);color:white">15</div>
+                    <div class="list-content">
+                      <h4>Data Structures</h4>
+                      <p>Dec 15 • Hall A • 9:00 AM</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+        <!-- Dashboard Page -->
+        <div class="page-content" id="page-dashboard"></div>
+
+        <!-- Attendance Page -->
+        <div class="page-content" id="page-attendance"></div>
+
+        <!-- Timetable Page -->
+        <div class="page-content" id="page-timetable"></div>
+
+        <!-- Exams Page -->
+        <div class="page-content" id="page-exams"></div>
+
+        <!-- Grades Page -->
+        <div class="page-content" id="page-grades"></div>
+
+        <!-- Library Page -->
+        <div class="page-content" id="page-library"></div>
+
+        <!-- Notices Page -->
+        <div class="page-content" id="page-notices"></div>
+
+        <!-- Fees Page -->
+        <div class="page-content" id="page-fees"></div>
+
+        <!-- Courses Page -->
+        <div class="page-content" id="page-courses"></div>
+
+        <!-- NEW FEATURE PAGES -->
+        <div class="page-content" id="page-placements"></div>
+        <div class="page-content" id="page-events"></div>
+        <div class="page-content" id="page-faculty"></div>
+        <div class="page-content" id="page-cafeteria"></div>
+        <div class="page-content" id="page-cgpa_calc"></div>
+
+        <!-- Profile Page -->
+        <div class="page-content" id="page-profile"></div>
+      </div>
+    </main>
+  </div>
+
+  <button class="mobile-toggle" id="mobileToggle">☰</button>
+
+  <script>
+    // Student Data (will be loaded from API)
+    let studentData = null;
+
+    // Elements
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const micBtn = document.getElementById('micBtn');
+    const themeToggle = document.getElementById('themeToggle');
+    const toastContainer = document.getElementById('toastContainer');
+    const sidebar = document.getElementById('sidebar');
+    const mobileToggle = document.getElementById('mobileToggle');
+    const pageTitle = document.getElementById('pageTitle');
+    const refreshBtn = document.getElementById('refreshBtn');
+
+    // Toast
+    function showToast(msg, type = 'info') {
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      const icons = { success: '✅', error: '❌', info: 'ℹ️' };
+      toast.innerHTML = `<span>${icons[type]}</span><span>${msg}</span>`;
+      toastContainer.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // Load Student Data
+    async function loadStudentData() {
+      try {
+        const res = await fetch('http://localhost:8000/api/voice', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: 'profile', user: 'lakshya sharma' })
+        });
+        return true;
+      } catch (err) {
+        showToast('Could not connect to server', 'error');
+        return false;
+      }
+    }
+
+    // Fetch data from API
+    async function fetchData(query) {
+      try {
+        const res = await fetch('http://localhost:8000/api/voice', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: query, user: 'lakshya sharma' })
+        });
+        const data = await res.json();
+        return data.reply;
+      } catch (err) {
+        return null;
+      }
+    }
+
+    // Page Renderers
+    const pageRenderers = {
+      async dashboard() {
+        const container = document.getElementById('page-dashboard');
+        container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+
+        const [att, grades, exams, fees] = await Promise.all([
+          fetchData('attendance'),
+          fetchData('grades'),
+          fetchData('exams'),
+          fetchData('fees')
+        ]);
+
+        container.innerHTML = `
+          <div class="stats-row">
+            <div class="stat-card purple">
+              <div class="icon">📊</div>
+              <div class="value">85%</div>
+              <div class="label">Attendance</div>
+            </div>
+            <div class="stat-card blue">
+              <div class="icon">🎓</div>
+              <div class="value">8.5</div>
+              <div class="label">CGPA</div>
+            </div>
+            <div class="stat-card green">
+              <div class="icon">📝</div>
+              <div class="value">8</div>
+              <div class="label">Upcoming Exams</div>
+            </div>
+            <div class="stat-card orange">
+              <div class="icon">💰</div>
+              <div class="value">₹25K</div>
+              <div class="label">Fee Pending</div>
+            </div>
+          </div>
+          <div class="dashboard-grid">
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <div class="dash-card-title"><span class="icon">📊</span> Attendance Overview</div>
+              </div>
+              <pre style="font-size:0.8rem;line-height:1.6;white-space:pre-wrap;color:var(--text-secondary)">${att || 'Loading...'}</pre>
+            </div>
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <div class="dash-card-title"><span class="icon">📝</span> Upcoming Exams</div>
+              </div>
+              <pre style="font-size:0.8rem;line-height:1.6;white-space:pre-wrap;color:var(--text-secondary)">${exams || 'Loading...'}</pre>
+            </div>
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <div class="dash-card-title"><span class="icon">🎓</span> Academic Performance</div>
+              </div>
+              <pre style="font-size:0.8rem;line-height:1.6;white-space:pre-wrap;color:var(--text-secondary)">${grades || 'Loading...'}</pre>
+            </div>
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <div class="dash-card-title"><span class="icon">💰</span> Fee Status</div>
+              </div>
+              <pre style="font-size:0.8rem;line-height:1.6;white-space:pre-wrap;color:var(--text-secondary)">${fees || 'Loading...'}</pre>
+            </div>
+          </div>
+        `;
+      },
+
+      async attendance() {
+        const container = document.getElementById('page-attendance');
+        container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+        const data = await fetchData('Check my attendance');
+
+        container.innerHTML = `
+          <div class="stats-row">
+            <div class="stat-card green">
+              <div class="icon">✅</div>
+              <div class="value">76</div>
+              <div class="label">Present</div>
+            </div>
+            <div class="stat-card orange">
+              <div class="icon">❌</div>
+              <div class="value">14</div>
+              <div class="label">Absent</div>
+            </div>
+            <div class="stat-card blue">
+              <div class="icon">📚</div>
+              <div class="value">90</div>
+              <div class="label">Total Classes</div>
+            </div>
+            <div class="stat-card purple">
+              <div class="icon">📊</div>
+              <div class="value">85%</div>
+              <div class="label">Overall</div>
+            </div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <div class="dash-card-title"><span class="icon">📋</span> Attendance Details</div>
+              <span class="dash-card-badge">This Semester • 7 Subjects</span>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr><th>Subject</th><th>Present</th><th>Total</th><th>Percentage</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>📘 Data Structures & Algorithms</td><td>18</td><td>20</td>
+                  <td><div class="progress-bar"><div class="progress-fill green" style="width:90%"></div></div></td>
+                  <td><span class="badge success">90%</span></td>
+                </tr>
+                <tr>
+                  <td>📙 Database Management Systems</td><td>14</td><td>18</td>
+                  <td><div class="progress-bar"><div class="progress-fill yellow" style="width:78%"></div></div></td>
+                  <td><span class="badge warning">78%</span></td>
+                </tr>
+                <tr>
+                  <td>📗 Computer Networks</td><td>10</td><td>12</td>
+                  <td><div class="progress-bar"><div class="progress-fill green" style="width:83%"></div></div></td>
+                  <td><span class="badge success">83%</span></td>
+                </tr>
+                <tr>
+                  <td>📕 Operating Systems</td><td>16</td><td>18</td>
+                  <td><div class="progress-bar"><div class="progress-fill green" style="width:89%"></div></div></td>
+                  <td><span class="badge success">89%</span></td>
+                </tr>
+                <tr>
+                  <td>📓 Software Engineering</td><td>8</td><td>10</td>
+                  <td><div class="progress-bar"><div class="progress-fill green" style="width:80%"></div></div></td>
+                  <td><span class="badge success">80%</span></td>
+                </tr>
+                <tr>
+                  <td>🤖 Artificial Intelligence</td><td>6</td><td>7</td>
+                  <td><div class="progress-bar"><div class="progress-fill green" style="width:86%"></div></div></td>
+                  <td><span class="badge success">86%</span></td>
+                </tr>
+                <tr>
+                  <td>🧠 Machine Learning</td><td>4</td><td>5</td>
+                  <td><div class="progress-bar"><div class="progress-fill green" style="width:80%"></div></div></td>
+                  <td><span class="badge success">80%</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        `;
+      },
+
+      async timetable() {
+        const container = document.getElementById('page-timetable');
+        container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+
+        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+        let tabsHtml = days.map((d, i) => `<button class="chip ${i === 0 ? 'active' : ''}" onclick="loadDay('${d.toLowerCase()}')">${d}</button>`).join('');
+
+        const data = await fetchData('Show timetable for Monday');
+
+        container.innerHTML = `
+          <div style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap">${tabsHtml}</div>
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <div class="dash-card-title"><span class="icon">📅</span> Class Schedule</div>
+              <span class="dash-card-badge" id="dayBadge">Monday</span>
+            </div>
+            <div id="timetableContent">
+              <pre style="font-size:0.85rem;line-height:1.7;white-space:pre-wrap;color:var(--text-secondary);padding:10px">${data || 'Loading...'}</pre>
+            </div>
+          </div>
+        `;
+      },
+
+      async exams() {
+        const container = document.getElementById('page-exams');
+        container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+        const data = await fetchData('When are my upcoming exams?');
+
+        container.innerHTML = `
+          <div class="stats-row">
+            <div class="stat-card purple"><div class="icon">📝</div><div class="value">8</div><div class="label">Total Exams</div></div>
+            <div class="stat-card orange"><div class="icon">⏳</div><div class="value">14</div><div class="label">Days to First</div></div>
+            <div class="stat-card blue"><div class="icon">📚</div><div class="value">9</div><div class="label">Subjects</div></div>
+            <div class="stat-card green"><div class="icon">✅</div><div class="value">0</div><div class="label">Completed</div></div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <div class="dash-card-title"><span class="icon">📝</span> Examination Schedule</div>
+              <span class="dash-card-badge">Mid-Semester • 8 Exams</span>
+            </div>
+            <table class="data-table">
+              <thead><tr><th>Subject</th><th>Date</th><th>Time</th><th>Venue</th><th>Days Left</th></tr></thead>
+              <tbody>
+                <tr><td>📘 Data Structures & Algorithms</td><td>15 Dec 2025</td><td>9:00 AM</td><td>Hall A</td><td><span class="badge warning">14 days</span></td></tr>
+                <tr><td>📙 Database Management Systems</td><td>18 Dec 2025</td><td>2:00 PM</td><td>Hall B</td><td><span class="badge info">17 days</span></td></tr>
+                <tr><td>📗 Computer Networks</td><td>20 Dec 2025</td><td>9:00 AM</td><td>Hall A</td><td><span class="badge info">19 days</span></td></tr>
+                <tr><td>📕 Operating Systems</td><td>22 Dec 2025</td><td>2:00 PM</td><td>Hall C</td><td><span class="badge info">21 days</span></td></tr>
+                <tr><td>🤖 Artificial Intelligence</td><td>24 Dec 2025</td><td>9:00 AM</td><td>Hall A</td><td><span class="badge success">23 days</span></td></tr>
+                <tr><td>🧠 Machine Learning</td><td>26 Dec 2025</td><td>2:00 PM</td><td>Hall B</td><td><span class="badge success">25 days</span></td></tr>
+                <tr><td>🌐 Web Development</td><td>28 Dec 2025</td><td>9:00 AM</td><td>Hall C</td><td><span class="badge success">27 days</span></td></tr>
+                <tr><td>🔐 Cyber Security</td><td>30 Dec 2025</td><td>2:00 PM</td><td>Hall A</td><td><span class="badge success">29 days</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        `;
+      },
+
+      async grades() {
+        const container = document.getElementById('page-grades');
+        container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+        const data = await fetchData('What are my grades?');
+
+        container.innerHTML = `
+          <div class="stats-row">
+            <div class="stat-card purple"><div class="icon">🎓</div><div class="value">8.5</div><div class="label">CGPA</div></div>
+            <div class="stat-card blue"><div class="icon">📊</div><div class="value">8.9</div><div class="label">SGPA</div></div>
+            <div class="stat-card green"><div class="icon">📚</div><div class="value">112</div><div class="label">Credits Earned</div></div>
+            <div class="stat-card orange"><div class="icon">🏆</div><div class="value">A</div><div class="label">Avg Grade</div></div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <div class="dash-card-title"><span class="icon">🎓</span> Academic Results</div>
+              <span class="dash-card-badge">5th Semester • 9 Subjects</span>
+            </div>
+            <table class="data-table">
+              <thead><tr><th>Subject</th><th>Grade</th><th>Marks</th><th>Credits</th></tr></thead>
+              <tbody>
+                <tr><td>📘 Data Structures & Algorithms</td><td><span class="badge success">A</span></td><td>89</td><td>4</td></tr>
+                <tr><td>📙 Database Management Systems</td><td><span class="badge success">A-</span></td><td>82</td><td>4</td></tr>
+                <tr><td>📗 Computer Networks</td><td><span class="badge info">B+</span></td><td>76</td><td>3</td></tr>
+                <tr><td>📕 Operating Systems</td><td><span class="badge success">A</span></td><td>88</td><td>4</td></tr>
+                <tr><td>📓 Software Engineering</td><td><span class="badge success">A-</span></td><td>84</td><td>3</td></tr>
+                <tr><td>🤖 Artificial Intelligence</td><td><span class="badge success">A</span></td><td>91</td><td>4</td></tr>
+                <tr><td>🧠 Machine Learning</td><td><span class="badge purple">A+</span></td><td>95</td><td>4</td></tr>
+                <tr><td>🌐 Web Development</td><td><span class="badge success">A</span></td><td>87</td><td>3</td></tr>
+                <tr><td>🔐 Cyber Security</td><td><span class="badge info">B+</span></td><td>78</td><td>3</td></tr>
+              </tbody>
+            </table>
+          </div>
+        `;
+      },
+
+      async library() {
+        const container = document.getElementById('page-library');
+        container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+        const data = await fetchData('Show my library books');
+
+        container.innerHTML = `
+          <div class="stats-row">
+            <div class="stat-card blue"><div class="icon">📚</div><div class="value">3</div><div class="label">Borrowed</div></div>
+            <div class="stat-card green"><div class="icon">✅</div><div class="value">2</div><div class="label">Available Slots</div></div>
+            <div class="stat-card orange"><div class="icon">⚠️</div><div class="value">1</div><div class="label">Overdue</div></div>
+            <div class="stat-card purple"><div class="icon">💰</div><div class="value">₹25</div><div class="label">Fine</div></div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <div class="dash-card-title"><span class="icon">📚</span> Borrowed Books</div>
+            </div>
+            <pre style="font-size:0.85rem;line-height:1.7;white-space:pre-wrap;color:var(--text-secondary);padding:10px">${data || 'Loading...'}</pre>
+          </div>
+        `;
+      },
+
+      async notices() {
+        const container = document.getElementById('page-notices');
+        container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+        const data = await fetchData('Any new notices?');
+
+        container.innerHTML = `
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <div class="dash-card-title"><span class="icon">📢</span> Announcements</div>
+              <span class="dash-card-badge">5 New</span>
+            </div>
+            <pre style="font-size:0.85rem;line-height:1.7;white-space:pre-wrap;color:var(--text-secondary);padding:10px">${data || 'Loading...'}</pre>
+          </div>
+        `;
+      },
+
+      async fees() {
+        const container = document.getElementById('page-fees');
+        container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+        const data = await fetchData('Show fee details');
+
+        container.innerHTML = `
+          <div class="stats-row">
+            <div class="stat-card purple"><div class="icon">💰</div><div class="value">₹1.25L</div><div class="label">Total Fee</div></div>
+            <div class="stat-card green"><div class="icon">✅</div><div class="value">₹1.00L</div><div class="label">Paid</div></div>
+            <div class="stat-card orange"><div class="icon">⏳</div><div class="value">₹25K</div><div class="label">Pending</div></div>
+            <div class="stat-card blue"><div class="icon">📅</div><div class="value">31 Dec</div><div class="label">Due Date</div></div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <div class="dash-card-title"><span class="icon">💰</span> Fee Details</div>
+            </div>
+            <pre style="font-size:0.85rem;line-height:1.7;white-space:pre-wrap;color:var(--text-secondary);padding:10px">${data || 'Loading...'}</pre>
+            <div style="padding:0 10px 10px">
+              <button style="width:100%;padding:12px;background:var(--accent-gradient);border:none;border-radius:10px;color:white;font-weight:600;cursor:pointer;font-family:inherit">💳 Pay Now - ₹25,000</button>
+            </div>
+          </div>
+        `;
+      },
+
+      async courses() {
+        const container = document.getElementById('page-courses');
+        container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+        const data = await fetchData('Show my courses');
+
+        container.innerHTML = `
+          <div class="stats-row">
+            <div class="stat-card purple"><div class="icon">📖</div><div class="value">9</div><div class="label">Courses</div></div>
+            <div class="stat-card blue"><div class="icon">📊</div><div class="value">32</div><div class="label">Credits</div></div>
+            <div class="stat-card green"><div class="icon">👨‍🏫</div><div class="value">9</div><div class="label">Professors</div></div>
+            <div class="stat-card orange"><div class="icon">🕐</div><div class="value">24</div><div class="label">Hours/Week</div></div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <div class="dash-card-title"><span class="icon">📖</span> Enrolled Courses</div>
+              <span class="dash-card-badge">5th Semester • 9 Courses</span>
+            </div>
+            <table class="data-table">
+              <thead><tr><th>Code</th><th>Subject</th><th>Professor</th><th>Schedule</th><th>Credits</th></tr></thead>
+              <tbody>
+                <tr><td>CS301</td><td>📘 Data Structures & Algorithms</td><td>Dr. Rajesh Kumar</td><td>Mon, Wed 9-10 AM</td><td>4</td></tr>
+                <tr><td>CS302</td><td>📙 Database Management Systems</td><td>Dr. Priya Singh</td><td>Tue, Thu 11 AM-12 PM</td><td>4</td></tr>
+                <tr><td>CS303</td><td>📗 Computer Networks</td><td>Dr. Amit Verma</td><td>Mon, Fri 2-3 PM</td><td>3</td></tr>
+                <tr><td>CS304</td><td>📕 Operating Systems</td><td>Dr. Neha Gupta</td><td>Wed, Fri 10-11 AM</td><td>4</td></tr>
+                <tr><td>CS305</td><td>📓 Software Engineering</td><td>Dr. Sanjay Patel</td><td>Tue, Thu 3-4 PM</td><td>3</td></tr>
+                <tr><td>CS306</td><td>🤖 Artificial Intelligence</td><td>Dr. Arun Sharma</td><td>Mon, Wed 11 AM-12 PM</td><td>4</td></tr>
+                <tr><td>CS307</td><td>🧠 Machine Learning</td><td>Dr. Kavita Reddy</td><td>Tue, Thu 9-10 AM</td><td>4</td></tr>
+                <tr><td>CS308</td><td>🌐 Web Development</td><td>Dr. Vikram Joshi</td><td>Wed, Fri 3-4 PM</td><td>3</td></tr>
+                <tr><td>CS309</td><td>🔐 Cyber Security</td><td>Dr. Meera Nair</td><td>Mon, Fri 4-5 PM</td><td>3</td></tr>
+              </tbody>
+            </table>
+          </div>
+        `;
+      },
+
+      async profile() {
+        const container = document.getElementById('page-profile');
+        container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+        const data = await fetchData('Show my profile');
+
+        container.innerHTML = `
+          <div class="dashboard-grid">
+            <div class="dash-card" style="text-align:center;padding:30px">
+              <div style="width:80px;height:80px;background:var(--accent-gradient);border-radius:20px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:2rem;color:white">LS</div>
+              <h2 style="font-size:1.3rem;margin-bottom:4px">Lakshya Sharma</h2>
+              <p style="color:var(--text-muted);font-size:0.85rem">B.Tech Computer Science • 3rd Year</p>
+              <p style="color:var(--accent-secondary);font-size:0.8rem;margin-top:8px">Roll No: 2022CSE045</p>
+            </div>
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <div class="dash-card-title"><span class="icon">👤</span> Personal Information</div>
+              </div>
+              <pre style="font-size:0.85rem;line-height:1.7;white-space:pre-wrap;color:var(--text-secondary);padding:10px">${data || 'Loading...'}</pre>
+            </div>
+          </div>
+        `;
+      },
+
+      async placements() {
+        const container = document.getElementById('page-placements');
+        container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+
+        try {
+          const res = await fetch('http://localhost:8000/api/placements');
+          const data = await res.json();
+
+          let html = `<div class="dashboard-grid">`;
+          data.placements.forEach(p => {
+            html += `
+              <div class="dash-card">
+                <div class="dash-card-header">
+                  <div class="dash-card-title"><span class="icon">🏢</span> ${p.company}</div>
+                  <span class="dash-card-badge">${p.type}</span>
+                </div>
+                <div style="font-size:0.85rem;line-height:1.6;color:var(--text-secondary)">
+                  <p><strong>Role:</strong> ${p.roles.join(', ')}</p>
+                  <p><strong>CTC:</strong> <span style="color:var(--success)">${p.ctc}</span></p>
+                  <p><strong>Eligibility:</strong> ${p.eligibility}</p>
+                  <p><strong>Deadline:</strong> ${p.deadline}</p>
+                </div>
+                <button style="width:100%;margin-top:12px;padding:8px;background:var(--bg-elevated);border:1px solid var(--border-color);border-radius:8px;color:var(--text-primary);cursor:pointer">Apply Now</button>
+              </div>
+             `;
+          });
+          html += `</div>`;
+          container.innerHTML = html;
+        } catch (e) {
+          container.innerHTML = `<div class="dash-card"><p>Error loading placements.</p></div>`;
+        }
+      },
+
+      async events() {
+        const container = document.getElementById('page-events');
+        container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+
+        try {
+          const res = await fetch('http://localhost:8000/api/events');
+          const data = await res.json();
+
+          let html = `<div class="dashboard-grid">`;
+          data.events.forEach(e => {
+            html += `
+              <div class="dash-card">
+                <div class="dash-card-header">
+                  <div class="dash-card-title"><span class="icon">🎭</span> ${e.name}</div>
+                  <span class="dash-card-badge">${e.category}</span>
+                </div>
+                <div style="font-size:0.85rem;line-height:1.6;color:var(--text-secondary)">
+                  <p><strong>Date:</strong> ${e.date}</p>
+                  <p><strong>Venue:</strong> ${e.venue}</p>
+                  <p style="margin-top:8px">${e.description}</p>
+                </div>
+                <button style="width:100%;margin-top:12px;padding:8px;background:var(--accent-gradient);border:none;border-radius:8px;color:white;cursor:pointer">Register</button>
+              </div>
+             `;
+          });
+          html += `</div>`;
+          container.innerHTML = html;
+        } catch (e) { container.innerHTML = 'Error'; }
+      },
+
+      async faculty() {
+        const container = document.getElementById('page-faculty');
+        container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+
+        try {
+          const res = await fetch('http://localhost:8000/api/faculty');
+          const data = await res.json();
+
+          let html = `<div class="dashboard-grid">`;
+          data.faculty.forEach(f => {
+            html += `
+              <div class="dash-card">
+                <div class="dash-card-header">
+                  <div class="dash-card-title"><span class="icon">👨‍🏫</span> ${f.name}</div>
+                </div>
+                <div style="font-size:0.85rem;line-height:1.6;color:var(--text-secondary)">
+                  <p>${f.designation} - ${f.dept}</p>
+                  <p>📧 ${f.email}</p>
+                  <p>📍 ${f.cabin}</p>
+                </div>
+                <button onclick="bookAppointment('${f.name}')" style="width:100%;margin-top:12px;padding:8px;background:var(--bg-elevated);border:1px solid var(--border-color);border-radius:8px;color:var(--text-primary);cursor:pointer">Book Appointment</button>
+              </div>
+             `;
+          });
+          html += `</div>`;
+          container.innerHTML = html;
+        } catch (e) { container.innerHTML = 'Error'; }
+      },
+
+      async cafeteria() {
+        const container = document.getElementById('page-cafeteria');
+        container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+
+        try {
+          const [resMenu, resOrders] = await Promise.all([
+            fetch('http://localhost:8000/api/cafeteria'),
+            fetch('http://localhost:8000/api/orders?student_key=lakshya%20sharma')
+          ]);
+
+          const menuData = await resMenu.json();
+          const ordersData = await resOrders.json();
+
+          let html = '';
+
+          // 1. Order History
+          if (ordersData.orders && ordersData.orders.length > 0) {
+            html += `
+              <div class="dash-card" style="margin-bottom:20px">
+                <div class="dash-card-header"><div class="dash-card-title"><span class="icon">🧾</span> Your Orders</div></div>
+                <div style="max-height: 200px; overflow-y: auto;">
+            `;
+            ordersData.orders.forEach(o => {
+              let statusColor = 'var(--text-muted)';
+              if (o.status === 'Completed') statusColor = 'var(--success)';
+              if (o.status === 'Preparing') statusColor = 'var(--warning)';
+              html += `
+                <div style="padding:10px;border-bottom:1px solid var(--border-color);font-size:0.85rem">
+                  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+                    <span style="font-weight:600">#${o.id}</span>
+                    <span style="color:${statusColor};font-weight:600">${o.status}</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;color:var(--text-secondary)">
+                    <span>${o.items.join(', ')}</span>
+                    <span>₹${o.total}</span>
+                  </div>
+                  <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px">${o.date}</div>
+                </div>
+              `;
+            });
+            html += `</div></div>`;
+          }
+
+          html += `
+            <div class="dash-card" style="margin-bottom:20px">
+              <div class="dash-card-header"><div class="dash-card-title"><span class="icon">🛒</span> Cart</div></div>
+              <div id="cartItems" style="padding:10px;color:var(--text-muted);font-size:0.9rem">Your cart is empty</div>
+              <div style="padding:10px;border-top:1px solid var(--border-color);display:flex;justify-content:space-between;align-items:center">
+                <span style="font-weight:700" id="cartTotal">Total: ₹0</span>
+                <button onclick="placeOrder()" style="padding:6px 12px;background:var(--success);border:none;border-radius:6px;color:white;cursor:pointer">Checkout</button>
+              </div>
+            </div>
+            <div class="dashboard-grid">
+          `;
+
+          menuData.menu.forEach(m => {
+            html += `
+              <div class="dash-card">
+                <div class="dash-card-header">
+                  <div class="dash-card-title"><span class="icon">🍔</span> ${m.item}</div>
+                  <span class="dash-card-badge">₹${m.price}</span>
+                </div>
+                <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:10px">${m.category}</p>
+                <button onclick="addToCart('${m.item}', ${m.price})" style="width:100%;padding:8px;background:var(--accent-gradient);border:none;border-radius:8px;color:white;cursor:pointer">Add to Cart</button>
+              </div>
+             `;
+          });
+          html += `</div>`;
+          container.innerHTML = html;
+        } catch (e) { container.innerHTML = 'Error'; }
+      },
+
+      async cgpa_calc() {
+        const container = document.getElementById('page-cgpa_calc');
+        container.innerHTML = `
+          <div class="dash-card" style="max-width:600px;margin:0 auto">
+            <div class="dash-card-header">
+              <div class="dash-card-title"><span class="icon">🔢</span> CGPA Predictor</div>
+            </div>
+            <div style="padding:10px">
+              <div class="input-container" style="margin-bottom:12px">
+                <input type="number" id="currentCGPA" placeholder="Current CGPA (e.g., 8.5)">
+              </div>
+              <div class="input-container" style="margin-bottom:12px">
+                <input type="number" id="creditsEarned" placeholder="Credits Earned (e.g., 112)">
+              </div>
+              <div class="input-container" style="margin-bottom:12px">
+                <input type="number" id="targetCGPA" placeholder="Target CGPA (e.g., 9.0)">
+              </div>
+              <div class="input-container" style="margin-bottom:20px">
+                <input type="number" id="futureCredits" placeholder="Credits Next Sem (e.g., 24)">
+              </div>
+              <button onclick="calculateCGPA()" style="width:100%;padding:12px;background:var(--accent-gradient);border:none;border-radius:10px;color:white;font-weight:700;cursor:pointer">Calculate Required GPA</button>
+              <div id="cgpaResult" style="margin-top:20px;text-align:center;font-weight:700;font-size:1.1rem"></div>
+            </div>
+          </div>
+        `;
+      }
+    };
+
+    // Load Day for Timetable
+    async function loadDay(day) {
+      const content = document.getElementById('timetableContent');
+      const badge = document.getElementById('dayBadge');
+      if (content && badge) {
+        content.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+        badge.textContent = day.charAt(0).toUpperCase() + day.slice(1);
+        const data = await fetchData(`Show timetable for ${day}`);
+        content.innerHTML = `<pre style="font-size:0.85rem;line-height:1.7;white-space:pre-wrap;color:var(--text-secondary);padding:10px">${data || 'No classes'}</pre>`;
+      }
+    }
+
+    // Navigation
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('click', async () => {
+        const page = item.dataset.page;
+
+        // Update active state
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+
+        // Update title
+        pageTitle.textContent = item.querySelector('span:last-of-type').textContent;
+
+        // Hide all pages, show selected
+        document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+        document.getElementById(`page-${page}`).classList.add('active');
+
+        // Load page content
+        if (pageRenderers[page]) {
+          await pageRenderers[page]();
+        }
+
+        // Mobile: close sidebar
+        if (window.innerWidth < 768) {
+          sidebar.classList.remove('open');
+          mobileToggle.textContent = '☰';
+        }
+
+        showToast(`Loaded ${item.querySelector('span:last-of-type').textContent}`, 'success');
+      });
+    });
+
+    // Theme Toggle
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      themeToggle.textContent = document.body.classList.contains('light') ? '☀️' : '🌙';
+    });
+
+    // Mobile Menu
+    mobileToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      mobileToggle.textContent = sidebar.classList.contains('open') ? '✕' : '☰';
+    });
+
+    // Refresh
+    refreshBtn.addEventListener('click', () => {
+      const activePage = document.querySelector('.nav-item.active')?.dataset.page;
+      if (activePage && pageRenderers[activePage]) {
+        pageRenderers[activePage]();
+        showToast('Refreshed!', 'success');
+      }
+    });
+
+    // Chat Functions
+    function addMessage(text, sender) {
+      const msg = document.createElement('div');
+      msg.className = `message ${sender}`;
+      msg.innerHTML = `
+        <div class="msg-avatar">${sender === 'bot' ? '🤖' : '👤'}</div>
+        <div class="msg-content">${text}</div>
+      `;
+      chatMessages.appendChild(msg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function showTyping() {
+      const typing = document.createElement('div');
+      typing.className = 'message bot';
+      typing.id = 'typing';
+      typing.innerHTML = `<div class="msg-avatar">🤖</div><div class="msg-content typing-dots"><span></span><span></span><span></span></div>`;
+      chatMessages.appendChild(typing);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function hideTyping() {
+      document.getElementById('typing')?.remove();
+    }
+
+    async function sendToBackend(text) {
+      showTyping();
+      try {
+        const res = await fetch('http://localhost:8000/api/voice', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text, user: 'lakshya sharma' })
+        });
+        const data = await res.json();
+        hideTyping();
+        addMessage(data.reply, 'bot');
+      } catch (err) {
+        hideTyping();
+        addMessage('⚠️ Could not connect to server.', 'bot');
+      }
+    }
+
+    function sendMessage() {
+      const text = chatInput.value.trim();
+      if (!text) return;
+      addMessage(text, 'user');
+      chatInput.value = '';
+      sendToBackend(text);
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
+
+    // Quick Chips
+    document.querySelectorAll('.chip[data-q]').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const q = chip.dataset.q;
+        addMessage(q, 'user');
+        sendToBackend(q);
+      });
+    });
+
+    // Speech Recognition
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SR();
+      recognition.lang = 'en-IN';
+      recognition.onstart = () => { micBtn.classList.add('active'); showToast('Listening...', 'info'); };
+      recognition.onend = () => micBtn.classList.remove('active');
+      recognition.onresult = (e) => {
+        const text = e.results[0][0].transcript;
+        addMessage(text, 'user');
+        sendToBackend(text);
+      };
+      micBtn.addEventListener('click', () => recognition.start());
+    }
+
+    // --- NEW FEATURE HELPERS ---
+
+    let cart = [];
+
+    function addToCart(item, price) {
+      cart.push({ item, price });
+      updateCartUI();
+      showToast(`Added ${item} to cart`, 'success');
+    }
+
+    function updateCartUI() {
+      const cartItems = document.getElementById('cartItems');
+      const cartTotal = document.getElementById('cartTotal');
+      if (!cartItems) return;
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = 'Your cart is empty';
+        cartTotal.textContent = 'Total: ₹0';
+        return;
+      }
+
+      cartItems.innerHTML = cart.map(i => `<div>${i.item} - ₹${i.price}</div>`).join('');
+      const total = cart.reduce((sum, i) => sum + i.price, 0);
+      cartTotal.textContent = `Total: ₹${total}`;
+    }
+
+    async function placeOrder() {
+      if (cart.length === 0) {
+        showToast('Cart is empty!', 'error');
+        return;
+      }
+
+      const total = cart.reduce((sum, i) => sum + i.price, 0);
+      const items = cart.map(i => i.item);
+
+      try {
+        const res = await fetch('http://localhost:8000/api/order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            student_key: 'lakshya sharma',
+            items: items,
+            total_amount: total
+          })
+        });
+        const data = await res.json();
+        showToast('Order placed successfully!', 'success');
+        cart = [];
+        updateCartUI();
+      } catch (e) {
+        showToast('Order failed', 'error');
+      }
+    }
+
+    async function bookAppointment(profName) {
+      if (!confirm(`Book appointment with ${profName}?`)) return;
+
+      try {
+        const res = await fetch('http://localhost:8000/api/appointment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            student_key: 'lakshya sharma',
+            professor_name: profName,
+            date: '25 Dec 2025', // Mock date
+            time: '10:00 AM',    // Mock time
+            purpose: 'General Discussion'
+          })
+        });
+        showToast('Appointment Request Sent!', 'success');
+      } catch (e) {
+        showToast('Failed to book appointment', 'error');
+      }
+    }
+
+    function calculateCGPA() {
+      const current = parseFloat(document.getElementById('currentCGPA').value);
+      const creditsEarned = parseFloat(document.getElementById('creditsEarned').value);
+      const target = parseFloat(document.getElementById('targetCGPA').value);
+      const futureCredits = parseFloat(document.getElementById('futureCredits').value);
+
+      if (!current || !creditsEarned || !target || !futureCredits) {
+        showToast('Please fill all fields', 'error');
+        return;
+      }
+
+      // Formula: (Target * (CreditsEarned + Future) - (Current * CreditsEarned)) / Future
+      const totalCredits = creditsEarned + futureCredits;
+      const requiredPoints = (target * totalCredits) - (current * creditsEarned);
+      const requiredGPA = requiredPoints / futureCredits;
+
+      const resultDiv = document.getElementById('cgpaResult');
+      if (requiredGPA > 10) {
+        resultDiv.innerHTML = `<span style="color:var(--error)">Impossible! (> 10 GPA required)</span>`;
+      } else if (requiredGPA < 0) {
+        resultDiv.innerHTML = `<span style="color:var(--success)">Already achieved!</span>`;
+      } else {
+        resultDiv.innerHTML = `You need <span style="color:var(--accent-primary)">${requiredGPA.toFixed(2)} GPA</span> in next semester.`;
+      }
+    }
+
+    // Initial welcome message
+    addMessage("Hello! 👋 I'm your AI campus assistant. Ask me about attendance, timetable, exams, grades, library, fees, notices, or courses!", 'bot');
+
+    // Welcome toast
+    setTimeout(() => showToast('Welcome back, Lakshya! 🎓', 'success'), 500);
+  </script>
+</body>
+
+</html>

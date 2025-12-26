@@ -1,0 +1,7 @@
+Flask
+SpeechRecognition
+pyttsx3
+nltk
+requests
+gunicorn
+

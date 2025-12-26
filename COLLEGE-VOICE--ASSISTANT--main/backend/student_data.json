@@ -1,0 +1,769 @@
+{
+  "students": {
+    "lakshya sharma": {
+      "id": "CSE2025A01",
+      "name": "Lakshya Sharma",
+      "email": "lakshya.sharma@college.edu",
+      "phone": "+91 98765 43210",
+      "course": "B.Tech Computer Science",
+      "year": "3rd Year",
+      "semester": "5th Semester",
+      "section": "A",
+      "roll_no": "2022CSE045",
+      "dob": "15 March 2003",
+      "address": "123, Green Valley, New Delhi",
+      "cgpa": 8.5,
+      "attendance": {
+        "overall_percent": 85,
+        "total_classes": 90,
+        "present": 76,
+        "absent": 14,
+        "subjects": {
+          "Data Structures & Algorithms": {
+            "present": 18,
+            "total": 20,
+            "percent": 90
+          },
+          "Database Management Systems": {
+            "present": 14,
+            "total": 18,
+            "percent": 78
+          },
+          "Computer Networks": {
+            "present": 10,
+            "total": 12,
+            "percent": 83
+          },
+          "Operating Systems": {
+            "present": 16,
+            "total": 18,
+            "percent": 89
+          },
+          "Software Engineering": {
+            "present": 8,
+            "total": 10,
+            "percent": 80
+          },
+          "Artificial Intelligence": {
+            "present": 6,
+            "total": 7,
+            "percent": 86
+          },
+          "Machine Learning": {
+            "present": 4,
+            "total": 5,
+            "percent": 80
+          }
+        }
+      },
+      "placements": {
+        "applications": [
+          {
+            "company": "Google",
+            "role": "Software Engineer",
+            "status": "Applied",
+            "date": "1 Dec 2025"
+          },
+          {
+            "company": "Microsoft",
+            "role": "sde intern",
+            "status": "Shortlisted",
+            "date": "28 Nov 2025"
+          }
+        ]
+      },
+      "events": {
+        "registrations": [
+          {
+            "event": "AI Workshop",
+            "date": "5 Dec 2025",
+            "status": "Registered"
+          }
+        ]
+      },
+      "faculty_appointments": [
+        {
+          "professor": "Dr. Rajesh Kumar",
+          "date": "10 Dec 2025",
+          "time": "11:00 AM",
+          "purpose": "Project Discussion",
+          "status": "Approved"
+        },
+        {
+          "professor": "Dr. Rajesh Kumar",
+          "date": "25 Dec 2025",
+          "time": "10:00 AM",
+          "purpose": "General Discussion",
+          "status": "Pending Approval"
+        },
+        {
+          "professor": "Dr. Priya Singh",
+          "date": "25 Dec 2025",
+          "time": "10:00 AM",
+          "purpose": "General Discussion",
+          "status": "Pending Approval"
+        },
+        {
+          "professor": "Dr. Rajesh Kumar",
+          "date": "25 Dec 2025",
+          "time": "10:00 AM",
+          "purpose": "General Discussion",
+          "status": "Pending Approval"
+        },
+        {
+          "professor": "Dr. Rajesh Kumar",
+          "date": "25 Dec 2025",
+          "time": "10:00 AM",
+          "purpose": "General Discussion",
+          "status": "Pending Approval"
+        }
+      ],
+      "cafeteria_orders": [
+        {
+          "id": "ORD4558",
+          "items": [
+            "Veg Burger",
+            "Chicken Sandwich"
+          ],
+          "total": 130,
+          "status": "Preparing",
+          "date": "22 Dec 2025"
+        },
+        {
+          "id": "ORD3953",
+          "items": [
+            "Chicken Sandwich"
+          ],
+          "total": 80,
+          "status": "Preparing",
+          "date": "22 Dec 2025"
+        },
+        {
+          "id": "ORD3853",
+          "items": [
+            "Veg Burger"
+          ],
+          "total": 50,
+          "status": "Preparing",
+          "date": "22 Dec 2025"
+        },
+        {
+          "id": "ORD3133",
+          "items": [
+            "Veg Burger",
+            "Veg Burger"
+          ],
+          "total": 100,
+          "status": "Preparing",
+          "date": "22 Dec 2025"
+        },
+        {
+          "id": "ORD001",
+          "items": [
+            "Veg Burger",
+            "Coke"
+          ],
+          "total": 120,
+          "status": "Completed",
+          "date": "2 Dec 2025"
+        }
+      ],
+      "grades": {
+        "current_semester": {
+          "Data Structures & Algorithms": {
+            "grade": "A",
+            "credits": 4,
+            "marks": 89
+          },
+          "Database Management Systems": {
+            "grade": "A-",
+            "credits": 4,
+            "marks": 82
+          },
+          "Computer Networks": {
+            "grade": "B+",
+            "credits": 3,
+            "marks": 76
+          },
+          "Operating Systems": {
+            "grade": "A",
+            "credits": 4,
+            "marks": 88
+          },
+          "Software Engineering": {
+            "grade": "A-",
+            "credits": 3,
+            "marks": 84
+          },
+          "Artificial Intelligence": {
+            "grade": "A",
+            "credits": 4,
+            "marks": 91
+          },
+          "Machine Learning": {
+            "grade": "A+",
+            "credits": 4,
+            "marks": 95
+          },
+          "Web Development": {
+            "grade": "A",
+            "credits": 3,
+            "marks": 87
+          },
+          "Cyber Security": {
+            "grade": "B+",
+            "credits": 3,
+            "marks": 78
+          }
+        },
+        "sgpa": 8.9,
+        "cgpa": 8.5,
+        "total_credits": 120,
+        "earned_credits": 112
+      },
+      "exams": [
+        {
+          "subject": "Data Structures & Algorithms",
+          "date": "15 Dec 2025",
+          "time": "9:00 AM",
+          "venue": "Hall A",
+          "type": "Mid-Semester",
+          "days_left": 14
+        },
+        {
+          "subject": "Database Management Systems",
+          "date": "18 Dec 2025",
+          "time": "2:00 PM",
+          "venue": "Hall B",
+          "type": "Mid-Semester",
+          "days_left": 17
+        },
+        {
+          "subject": "Computer Networks",
+          "date": "20 Dec 2025",
+          "time": "9:00 AM",
+          "venue": "Hall A",
+          "type": "Mid-Semester",
+          "days_left": 19
+        },
+        {
+          "subject": "Operating Systems",
+          "date": "22 Dec 2025",
+          "time": "2:00 PM",
+          "venue": "Hall C",
+          "type": "Mid-Semester",
+          "days_left": 21
+        },
+        {
+          "subject": "Artificial Intelligence",
+          "date": "24 Dec 2025",
+          "time": "9:00 AM",
+          "venue": "Hall A",
+          "type": "Mid-Semester",
+          "days_left": 23
+        },
+        {
+          "subject": "Machine Learning",
+          "date": "26 Dec 2025",
+          "time": "2:00 PM",
+          "venue": "Hall B",
+          "type": "Mid-Semester",
+          "days_left": 25
+        },
+        {
+          "subject": "Web Development",
+          "date": "28 Dec 2025",
+          "time": "9:00 AM",
+          "venue": "Hall C",
+          "type": "Mid-Semester",
+          "days_left": 27
+        },
+        {
+          "subject": "Cyber Security",
+          "date": "30 Dec 2025",
+          "time": "2:00 PM",
+          "venue": "Hall A",
+          "type": "Mid-Semester",
+          "days_left": 29
+        }
+      ],
+      "library": {
+        "books_borrowed": [
+          {
+            "title": "Introduction to Algorithms",
+            "author": "Thomas H. Cormen",
+            "issue_date": "20 Nov 2025",
+            "due_date": "10 Dec 2025",
+            "fine": 0,
+            "status": "Due Soon"
+          },
+          {
+            "title": "Database System Concepts",
+            "author": "Abraham Silberschatz",
+            "issue_date": "15 Nov 2025",
+            "due_date": "5 Dec 2025",
+            "fine": 25,
+            "status": "Overdue"
+          },
+          {
+            "title": "Computer Networks",
+            "author": "Andrew S. Tanenbaum",
+            "issue_date": "25 Nov 2025",
+            "due_date": "15 Dec 2025",
+            "fine": 0,
+            "status": "Active"
+          },
+          {
+            "title": "Artificial Intelligence: A Modern Approach",
+            "author": "Stuart Russell & Peter Norvig",
+            "issue_date": "28 Nov 2025",
+            "due_date": "18 Dec 2025",
+            "fine": 0,
+            "status": "Active"
+          }
+        ],
+        "total_borrowed": 4,
+        "total_fine": 25,
+        "max_books": 5
+      },
+      "fees": {
+        "total_fee": 125000,
+        "paid": 100000,
+        "pending": 25000,
+        "due_date": "31 Dec 2025",
+        "payment_history": [
+          {
+            "date": "15 Jul 2025",
+            "amount": 50000,
+            "mode": "Online",
+            "receipt": "REC001"
+          },
+          {
+            "date": "20 Sep 2025",
+            "amount": 50000,
+            "mode": "Online",
+            "receipt": "REC002"
+          }
+        ],
+        "breakdown": {
+          "tuition": 80000,
+          "hostel": 30000,
+          "library": 5000,
+          "lab": 5000,
+          "misc": 5000
+        }
+      },
+      "courses": [
+        {
+          "code": "CS301",
+          "name": "Data Structures & Algorithms",
+          "credits": 4,
+          "professor": "Dr. Rajesh Kumar",
+          "schedule": "Mon, Wed 9-10 AM"
+        },
+        {
+          "code": "CS302",
+          "name": "Database Management Systems",
+          "credits": 4,
+          "professor": "Dr. Priya Singh",
+          "schedule": "Tue, Thu 11 AM-12 PM"
+        },
+        {
+          "code": "CS303",
+          "name": "Computer Networks",
+          "credits": 3,
+          "professor": "Dr. Amit Verma",
+          "schedule": "Mon, Fri 2-3 PM"
+        },
+        {
+          "code": "CS304",
+          "name": "Operating Systems",
+          "credits": 4,
+          "professor": "Dr. Neha Gupta",
+          "schedule": "Wed, Fri 10-11 AM"
+        },
+        {
+          "code": "CS305",
+          "name": "Software Engineering",
+          "credits": 3,
+          "professor": "Dr. Sanjay Patel",
+          "schedule": "Tue, Thu 3-4 PM"
+        },
+        {
+          "code": "CS306",
+          "name": "Artificial Intelligence",
+          "credits": 4,
+          "professor": "Dr. Arun Sharma",
+          "schedule": "Mon, Wed 11 AM-12 PM"
+        },
+        {
+          "code": "CS307",
+          "name": "Machine Learning",
+          "credits": 4,
+          "professor": "Dr. Kavita Reddy",
+          "schedule": "Tue, Thu 9-10 AM"
+        },
+        {
+          "code": "CS308",
+          "name": "Web Development",
+          "credits": 3,
+          "professor": "Dr. Vikram Joshi",
+          "schedule": "Wed, Fri 3-4 PM"
+        },
+        {
+          "code": "CS309",
+          "name": "Cyber Security",
+          "credits": 3,
+          "professor": "Dr. Meera Nair",
+          "schedule": "Mon, Fri 4-5 PM"
+        }
+      ]
+    }
+  },
+  "timetable": {
+    "monday": [
+      {
+        "time": "9:00 AM",
+        "course": "Data Structures & Algorithms",
+        "room": "Room 301",
+        "professor": "Dr. Rajesh Kumar",
+        "type": "Lecture"
+      },
+      {
+        "time": "11:00 AM",
+        "course": "Artificial Intelligence",
+        "room": "Room 205",
+        "professor": "Dr. Arun Sharma",
+        "type": "Lecture"
+      },
+      {
+        "time": "2:00 PM",
+        "course": "Computer Networks",
+        "room": "Lab 102",
+        "professor": "Dr. Amit Verma",
+        "type": "Lab"
+      },
+      {
+        "time": "4:00 PM",
+        "course": "Cyber Security",
+        "room": "Room 401",
+        "professor": "Dr. Meera Nair",
+        "type": "Lecture"
+      }
+    ],
+    "tuesday": [
+      {
+        "time": "9:00 AM",
+        "course": "Machine Learning",
+        "room": "Room 301",
+        "professor": "Dr. Kavita Reddy",
+        "type": "Lecture"
+      },
+      {
+        "time": "11:00 AM",
+        "course": "Database Management Systems",
+        "room": "Lab 201",
+        "professor": "Dr. Priya Singh",
+        "type": "Lab"
+      },
+      {
+        "time": "3:00 PM",
+        "course": "Software Engineering",
+        "room": "Room 105",
+        "professor": "Dr. Sanjay Patel",
+        "type": "Lecture"
+      }
+    ],
+    "wednesday": [
+      {
+        "time": "9:00 AM",
+        "course": "Data Structures & Algorithms",
+        "room": "Room 301",
+        "professor": "Dr. Rajesh Kumar",
+        "type": "Lecture"
+      },
+      {
+        "time": "10:00 AM",
+        "course": "Operating Systems",
+        "room": "Room 205",
+        "professor": "Dr. Neha Gupta",
+        "type": "Lecture"
+      },
+      {
+        "time": "11:00 AM",
+        "course": "Artificial Intelligence",
+        "room": "Lab 301",
+        "professor": "Dr. Arun Sharma",
+        "type": "Lab"
+      },
+      {
+        "time": "3:00 PM",
+        "course": "Web Development",
+        "room": "Lab 102",
+        "professor": "Dr. Vikram Joshi",
+        "type": "Lab"
+      }
+    ],
+    "thursday": [
+      {
+        "time": "9:00 AM",
+        "course": "Machine Learning",
+        "room": "Lab 301",
+        "professor": "Dr. Kavita Reddy",
+        "type": "Lab"
+      },
+      {
+        "time": "11:00 AM",
+        "course": "Database Management Systems",
+        "room": "Room 205",
+        "professor": "Dr. Priya Singh",
+        "type": "Lecture"
+      },
+      {
+        "time": "3:00 PM",
+        "course": "Software Engineering",
+        "room": "Room 105",
+        "professor": "Dr. Sanjay Patel",
+        "type": "Lecture"
+      }
+    ],
+    "friday": [
+      {
+        "time": "10:00 AM",
+        "course": "Operating Systems",
+        "room": "Lab 201",
+        "professor": "Dr. Neha Gupta",
+        "type": "Lab"
+      },
+      {
+        "time": "2:00 PM",
+        "course": "Computer Networks",
+        "room": "Room 102",
+        "professor": "Dr. Amit Verma",
+        "type": "Lecture"
+      },
+      {
+        "time": "3:00 PM",
+        "course": "Web Development",
+        "room": "Room 301",
+        "professor": "Dr. Vikram Joshi",
+        "type": "Lecture"
+      },
+      {
+        "time": "4:00 PM",
+        "course": "Cyber Security",
+        "room": "Lab 401",
+        "professor": "Dr. Meera Nair",
+        "type": "Lab"
+      }
+    ]
+  },
+  "notices": [
+    {
+      "id": 1,
+      "title": "Mid-Semester Examination Schedule Released",
+      "content": "The mid-semester examinations will commence from December 15, 2025. Students are advised to check the examination portal for detailed schedule and seating arrangements.",
+      "type": "urgent",
+      "date": "1 Dec 2025",
+      "author": "Academic Office",
+      "time_ago": "2 hours ago"
+    },
+    {
+      "id": 2,
+      "title": "Library Timing Extended During Exams",
+      "content": "The central library will remain open till 10:00 PM during the examination period (Dec 15 - Dec 30). Students are encouraged to utilize this facility.",
+      "type": "info",
+      "date": "30 Nov 2025",
+      "author": "Library",
+      "time_ago": "Yesterday"
+    },
+    {
+      "id": 3,
+      "title": "Fee Payment Deadline Reminder",
+      "content": "This is to remind all students that the last date for fee payment is December 31, 2025. Late fee of Rs. 500 will be charged after the due date.",
+      "type": "warning",
+      "date": "28 Nov 2025",
+      "author": "Accounts Department",
+      "time_ago": "3 days ago"
+    },
+    {
+      "id": 4,
+      "title": "AI & ML Workshop Registration",
+      "content": "A 3-day workshop on Artificial Intelligence and Machine Learning will be conducted from Dec 5-7. Register on the student portal. Limited seats available!",
+      "type": "info",
+      "date": "29 Nov 2025",
+      "author": "CSE Department",
+      "time_ago": "2 days ago"
+    },
+    {
+      "id": 5,
+      "title": "Placement Drive - Google",
+      "content": "Google will be visiting campus on December 20, 2025 for recruitment. Eligible students (CGPA > 7.5) must register on the placement portal by Dec 10.",
+      "type": "urgent",
+      "date": "1 Dec 2025",
+      "author": "Placement Cell",
+      "time_ago": "2 hours ago"
+    },
+    {
+      "id": 6,
+      "title": "Hackathon 2025 - Register Now",
+      "content": "Annual coding hackathon is scheduled for Dec 12-13. Form teams of 3-4 members and register before Dec 8. Exciting prizes worth ₹50,000!",
+      "type": "info",
+      "date": "28 Nov 2025",
+      "author": "Coding Club",
+      "time_ago": "3 days ago"
+    }
+  ],
+  "help_topics": [
+    "attendance",
+    "timetable",
+    "schedule",
+    "exams",
+    "grades",
+    "results",
+    "library",
+    "books",
+    "fees",
+    "payment",
+    "notices",
+    "announcements",
+    "courses",
+    "subjects",
+    "profile",
+    "cgpa",
+    "sgpa",
+    "ai",
+    "ml",
+    "web",
+    "security",
+    "placements",
+    "jobs",
+    "internships",
+    "events",
+    "clubs",
+    "activities",
+    "faculty",
+    "professors",
+    "appointments",
+    "cafeteria",
+    "food",
+    "menu",
+    "canteen"
+  ],
+  "placements": [
+    {
+      "id": 1,
+      "company": "Google",
+      "roles": [
+        "Software Engineer",
+        "Site Reliability Engineer"
+      ],
+      "ctc": "30 LPA",
+      "date": "20 Dec 2025",
+      "deadline": "10 Dec 2025",
+      "eligibility": "CGPA > 7.5",
+      "type": "Full Time"
+    },
+    {
+      "id": 2,
+      "company": "Amazon",
+      "roles": [
+        "SDE Intern"
+      ],
+      "ctc": "80k/month",
+      "date": "15 Jan 2026",
+      "deadline": "25 Dec 2025",
+      "eligibility": "CGPA > 7.0",
+      "type": "Internship"
+    },
+    {
+      "id": 3,
+      "company": "Deloitte",
+      "roles": [
+        "Analyst"
+      ],
+      "ctc": "8 LPA",
+      "date": "5 Jan 2026",
+      "deadline": "20 Dec 2025",
+      "eligibility": "All Branches",
+      "type": "Full Time"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "name": "TechFest 2025",
+      "organizer": "Student Council",
+      "date": "15 Feb 2026",
+      "venue": "Main Auditorium",
+      "description": "Annual technical festival with coding contests, robotics, and more.",
+      "category": "Cultural"
+    },
+    {
+      "id": 2,
+      "name": "AI & ML Workshop",
+      "organizer": "CSE Dept",
+      "date": "5 Dec 2025",
+      "venue": "Seminar Hall",
+      "description": "Hands-on workshop on latest AI trends.",
+      "category": "Technical"
+    }
+  ],
+  "faculty": [
+    {
+      "name": "Dr. Rajesh Kumar",
+      "dept": "CSE",
+      "designation": "HOD",
+      "email": "rajesh@college.edu",
+      "cabin": "Block A, 101"
+    },
+    {
+      "name": "Dr. Priya Singh",
+      "dept": "CSE",
+      "designation": "Associate Prof",
+      "email": "priya@college.edu",
+      "cabin": "Block B, 204"
+    },
+    {
+      "name": "Dr. Amit Verma",
+      "dept": "IT",
+      "designation": "Assistant Prof",
+      "email": "amit@college.edu",
+      "cabin": "Block A, 105"
+    }
+  ],
+  "cafeteria": {
+    "menu": [
+      {
+        "id": 1,
+        "item": "Veg Burger",
+        "price": 50,
+        "category": "Snacks"
+      },
+      {
+        "id": 2,
+        "item": "Chicken Sandwich",
+        "price": 80,
+        "category": "Snacks"
+      },
+      {
+        "id": 3,
+        "item": "Fried Rice",
+        "price": 100,
+        "category": "Lunch"
+      },
+      {
+        "id": 4,
+        "item": "Cold Coffee",
+        "price": 60,
+        "category": "Beverages"
+      },
+      {
+        "id": 5,
+        "item": "Masala Dosa",
+        "price": 70,
+        "category": "Breakfast"
+      }
+    ]
+  }
+}

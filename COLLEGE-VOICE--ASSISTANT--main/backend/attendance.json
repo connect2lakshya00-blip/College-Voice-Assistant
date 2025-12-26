@@ -1,0 +1,13 @@
+{
+  "students": {
+    "lakshya sharma": {
+      "id": "CSE2025A01",
+      "attendance_percent": 87,
+      "courses": {
+        "ai": 90,
+        "dbms": 80,
+        "os": 85
+      }
+    }
+  }
+}

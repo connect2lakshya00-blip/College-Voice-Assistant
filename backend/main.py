@@ -1039,9 +1039,8 @@ def process(query: UserQuery):
     return {"reply": "I didn't understand. Try asking about attendance, timetable, exams, fees, library, placements, events, faculty, or cafeteria!"}
 
 
-@app.get("/")
-def root():
-    return {"status": "EduConnect API is running!", "version": "3.0", "admin": "/admin.html"}
+# Duplicate root endpoint removed to allow frontend serving
+
 
 
 @app.get("/api/health")

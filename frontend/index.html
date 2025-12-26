@@ -2016,7 +2016,7 @@
     async function sendToBackend(text) {
       showTyping();
       try {
-        const res = await fetch('/api/voice', {
+        const res = await fetch('http://localhost:8000/api/voice', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ text, user: 'lakshya sharma' })
@@ -2101,7 +2101,7 @@
       const items = cart.map(i => i.item);
 
       try {
-        const res = await fetch('/api/order', {
+        const res = await fetch('http://localhost:8000/api/order', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -2123,7 +2123,7 @@
       if (!confirm(`Book appointment with ${profName}?`)) return;
 
       try {
-        const res = await fetch('/api/appointment', {
+        const res = await fetch('http://localhost:8000/api/appointment', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

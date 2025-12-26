@@ -1,5 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
 import json
@@ -17,6 +19,24 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Constants
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
+
+# Serve Index (Catch-all for root)
+@app.get("/")
+async def read_index():
+    return FileResponse(os.path.join(FRONTEND_DIR, "index.html"))
+
+# Serve Admin
+@app.get("/admin")
+async def read_admin():
+    return FileResponse(os.path.join(FRONTEND_DIR, "admin.html"))
+
+# Mount Static Files (CSS, JS, Images)
+app.mount("/static", StaticFiles(directory=FRONTEND_DIR), name="static")
+
 
 # Load JSON database
 BASE = os.path.dirname(__file__)

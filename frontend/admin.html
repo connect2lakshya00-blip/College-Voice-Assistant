@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +27,11 @@
       --purple: #8b5cf6;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'DM Sans', sans-serif;
@@ -39,7 +44,7 @@
       position: fixed;
       inset: 0;
       z-index: -1;
-      background: 
+      background:
         radial-gradient(ellipse at 0% 0%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
         radial-gradient(ellipse at 100% 100%, rgba(5, 150, 105, 0.1) 0%, transparent 50%);
     }
@@ -60,8 +65,15 @@
     }
 
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .login-card {
@@ -153,7 +165,9 @@
       box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
     }
 
-    .login-input::placeholder { color: var(--text-muted); }
+    .login-input::placeholder {
+      color: var(--text-muted);
+    }
 
     .login-btn {
       width: 100%;
@@ -179,7 +193,9 @@
       box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
     }
 
-    .login-btn:active { transform: translateY(0); }
+    .login-btn:active {
+      transform: translateY(0);
+    }
 
     .login-error {
       background: rgba(239, 68, 68, 0.15);
@@ -193,7 +209,9 @@
       gap: 10px;
     }
 
-    .login-error.show { display: flex; }
+    .login-error.show {
+      display: flex;
+    }
 
     .login-footer {
       margin-top: 24px;
@@ -207,7 +225,9 @@
       font-weight: 500;
     }
 
-    .login-footer a:hover { text-decoration: underline; }
+    .login-footer a:hover {
+      text-decoration: underline;
+    }
 
     .credentials-hint {
       margin-top: 20px;
@@ -239,7 +259,10 @@
     }
 
     /* Layout */
-    .app-layout { display: flex; min-height: 100vh; }
+    .app-layout {
+      display: flex;
+      min-height: 100vh;
+    }
 
     /* Sidebar */
     .sidebar {
@@ -312,8 +335,14 @@
       font-weight: 700;
     }
 
-    .admin-info h3 { font-size: 0.9rem; }
-    .admin-info p { font-size: 0.7rem; color: var(--text-muted); }
+    .admin-info h3 {
+      font-size: 0.9rem;
+    }
+
+    .admin-info p {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
 
     .nav-section {
       padding: 12px;
@@ -343,10 +372,21 @@
       margin-bottom: 2px;
     }
 
-    .nav-item:hover { background: var(--bg-elevated); color: var(--text-primary); }
-    .nav-item.active { background: rgba(16, 185, 129, 0.15); color: var(--accent-secondary); }
+    .nav-item:hover {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+    }
 
-    .nav-icon { font-size: 1.1rem; width: 22px; text-align: center; }
+    .nav-item.active {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-secondary);
+    }
+
+    .nav-icon {
+      font-size: 1.1rem;
+      width: 22px;
+      text-align: center;
+    }
 
     .sidebar-footer {
       padding: 12px;
@@ -391,7 +431,10 @@
       transition: all 0.2s;
     }
 
-    .back-link:hover { background: var(--bg-elevated); color: var(--text-primary); }
+    .back-link:hover {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+    }
 
     /* Main Content */
     .main-content {
@@ -414,7 +457,10 @@
       z-index: 40;
     }
 
-    .page-title { font-size: 1.3rem; font-weight: 700; }
+    .page-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
 
     .content-area {
       flex: 1;
@@ -426,11 +472,20 @@
       animation: fadeIn 0.3s ease;
     }
 
-    .page-content.active { display: block; }
+    .page-content.active {
+      display: block;
+    }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Stats Cards */
@@ -460,17 +515,48 @@
       font-size: 1.4rem;
     }
 
-    .stat-card .value { font-size: 1.5rem; font-weight: 800; }
-    .stat-card .label { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+    .stat-card .value {
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
 
-    .stat-card.green .icon { background: rgba(16, 185, 129, 0.2); }
-    .stat-card.green .value { color: #34d399; }
-    .stat-card.blue .icon { background: rgba(59, 130, 246, 0.2); }
-    .stat-card.blue .value { color: #60a5fa; }
-    .stat-card.purple .icon { background: rgba(139, 92, 246, 0.2); }
-    .stat-card.purple .value { color: #a78bfa; }
-    .stat-card.orange .icon { background: rgba(249, 115, 22, 0.2); }
-    .stat-card.orange .value { color: #fb923c; }
+    .stat-card .label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .stat-card.green .icon {
+      background: rgba(16, 185, 129, 0.2);
+    }
+
+    .stat-card.green .value {
+      color: #34d399;
+    }
+
+    .stat-card.blue .icon {
+      background: rgba(59, 130, 246, 0.2);
+    }
+
+    .stat-card.blue .value {
+      color: #60a5fa;
+    }
+
+    .stat-card.purple .icon {
+      background: rgba(139, 92, 246, 0.2);
+    }
+
+    .stat-card.purple .value {
+      color: #a78bfa;
+    }
+
+    .stat-card.orange .icon {
+      background: rgba(249, 115, 22, 0.2);
+    }
+
+    .stat-card.orange .value {
+      color: #fb923c;
+    }
 
     /* Cards */
     .card {
@@ -496,7 +582,9 @@
       gap: 8px;
     }
 
-    .card-body { padding: 18px; }
+    .card-body {
+      padding: 18px;
+    }
 
     /* Table */
     .data-table {
@@ -504,7 +592,8 @@
       border-collapse: collapse;
     }
 
-    .data-table th, .data-table td {
+    .data-table th,
+    .data-table td {
       padding: 12px 14px;
       text-align: left;
       border-bottom: 1px solid var(--border-color);
@@ -517,8 +606,13 @@
       text-transform: uppercase;
     }
 
-    .data-table td { font-size: 0.85rem; }
-    .data-table tr:hover { background: var(--bg-elevated); }
+    .data-table td {
+      font-size: 0.85rem;
+    }
+
+    .data-table tr:hover {
+      background: var(--bg-elevated);
+    }
 
     /* Buttons */
     .btn {
@@ -540,7 +634,10 @@
       color: white;
     }
 
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
 
     .btn-secondary {
       background: var(--bg-elevated);
@@ -548,16 +645,24 @@
       border: 1px solid var(--border-color);
     }
 
-    .btn-secondary:hover { background: var(--bg-hover); }
+    .btn-secondary:hover {
+      background: var(--bg-hover);
+    }
 
     .btn-danger {
       background: rgba(239, 68, 68, 0.2);
       color: var(--error);
     }
 
-    .btn-danger:hover { background: var(--error); color: white; }
+    .btn-danger:hover {
+      background: var(--error);
+      color: white;
+    }
 
-    .btn-sm { padding: 6px 10px; font-size: 0.75rem; }
+    .btn-sm {
+      padding: 6px 10px;
+      font-size: 0.75rem;
+    }
 
     /* Forms */
     .form-grid {
@@ -570,7 +675,9 @@
       margin-bottom: 14px;
     }
 
-    .form-group.full { grid-column: span 2; }
+    .form-group.full {
+      grid-column: span 2;
+    }
 
     .form-label {
       display: block;
@@ -580,7 +687,9 @@
       margin-bottom: 6px;
     }
 
-    .form-input, .form-select, textarea.form-input {
+    .form-input,
+    .form-select,
+    textarea.form-input {
       width: 100%;
       padding: 10px 14px;
       background: var(--bg-elevated);
@@ -592,13 +701,17 @@
       transition: all 0.2s;
     }
 
-    .form-input:focus, .form-select:focus, textarea.form-input:focus {
+    .form-input:focus,
+    .form-select:focus,
+    textarea.form-input:focus {
       outline: none;
       border-color: var(--accent-primary);
       box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
     }
 
-    .form-input::placeholder { color: var(--text-muted); }
+    .form-input::placeholder {
+      color: var(--text-muted);
+    }
 
     /* Badge */
     .badge {
@@ -609,10 +722,25 @@
       font-weight: 600;
     }
 
-    .badge.success { background: rgba(16, 185, 129, 0.2); color: var(--success); }
-    .badge.warning { background: rgba(245, 158, 11, 0.2); color: var(--warning); }
-    .badge.error { background: rgba(239, 68, 68, 0.2); color: var(--error); }
-    .badge.info { background: rgba(59, 130, 246, 0.2); color: var(--info); }
+    .badge.success {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--success);
+    }
+
+    .badge.warning {
+      background: rgba(245, 158, 11, 0.2);
+      color: var(--warning);
+    }
+
+    .badge.error {
+      background: rgba(239, 68, 68, 0.2);
+      color: var(--error);
+    }
+
+    .badge.info {
+      background: rgba(59, 130, 246, 0.2);
+      color: var(--info);
+    }
 
     /* Modal */
     .modal {
@@ -626,7 +754,9 @@
       padding: 20px;
     }
 
-    .modal.active { display: flex; }
+    .modal.active {
+      display: flex;
+    }
 
     .modal-content {
       background: var(--bg-card);
@@ -640,8 +770,15 @@
     }
 
     @keyframes modalIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     .modal-header {
@@ -652,7 +789,10 @@
       justify-content: space-between;
     }
 
-    .modal-title { font-size: 1.1rem; font-weight: 700; }
+    .modal-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
 
     .modal-close {
       width: 32px;
@@ -665,9 +805,14 @@
       color: var(--text-muted);
     }
 
-    .modal-close:hover { background: var(--bg-hover); color: var(--text-primary); }
+    .modal-close:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
 
-    .modal-body { padding: 20px; }
+    .modal-body {
+      padding: 20px;
+    }
 
     .modal-footer {
       padding: 16px 20px;
@@ -694,18 +839,30 @@
       align-items: center;
       gap: 8px;
       font-size: 0.85rem;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
       animation: toastIn 0.3s ease;
       margin-top: 8px;
     }
 
     @keyframes toastIn {
-      from { opacity: 0; transform: translateX(100px); }
-      to { opacity: 1; transform: translateX(0); }
+      from {
+        opacity: 0;
+        transform: translateX(100px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
-    .toast.success { border-left: 3px solid var(--success); }
-    .toast.error { border-left: 3px solid var(--error); }
+    .toast.success {
+      border-left: 3px solid var(--success);
+    }
+
+    .toast.error {
+      border-left: 3px solid var(--error);
+    }
 
     /* Loading */
     .loading {
@@ -724,10 +881,17 @@
       animation: spin 0.8s linear infinite;
     }
 
-    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
     /* Actions */
-    .action-btns { display: flex; gap: 6px; }
+    .action-btns {
+      display: flex;
+      gap: 6px;
+    }
 
     /* Tabs */
     .tabs {
@@ -749,21 +913,42 @@
       font-family: inherit;
     }
 
-    .tab:hover { color: var(--text-primary); }
-    .tab.active { background: var(--accent-gradient); color: white; border-color: transparent; }
+    .tab:hover {
+      color: var(--text-primary);
+    }
+
+    .tab.active {
+      background: var(--accent-gradient);
+      color: white;
+      border-color: transparent;
+    }
 
     @media (max-width: 1100px) {
-      .stats-row { grid-template-columns: repeat(2, 1fr); }
-      .form-grid { grid-template-columns: 1fr; }
-      .form-group.full { grid-column: span 1; }
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full {
+        grid-column: span 1;
+      }
     }
 
     @media (max-width: 768px) {
-      .sidebar { display: none; }
-      .main-content { margin-left: 0; }
+      .sidebar {
+        display: none;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="bg-effects"></div>
   <div class="toast-container" id="toastContainer"></div>
@@ -777,7 +962,7 @@
           <h1 class="login-title">Admin Login</h1>
           <p class="login-subtitle">EduConnect Control Panel</p>
         </div>
-        
+
         <div class="login-error" id="loginError">
           <span>⚠️</span>
           <span id="errorMessage">Invalid credentials</span>
@@ -788,10 +973,11 @@
             <label>Username</label>
             <div class="input-wrapper">
               <span class="input-icon">👤</span>
-              <input type="text" class="login-input" id="username" placeholder="Enter username" required autocomplete="off">
+              <input type="text" class="login-input" id="username" placeholder="Enter username" required
+                autocomplete="off">
             </div>
           </div>
-          
+
           <div class="form-field">
             <label>Password</label>
             <div class="input-wrapper">
@@ -1187,7 +1373,8 @@
                     </div>
                     <div class="form-group">
                       <label class="form-label">Professor *</label>
-                      <input type="text" class="form-input" name="professor" required placeholder="e.g., Dr. Rajesh Kumar">
+                      <input type="text" class="form-input" name="professor" required
+                        placeholder="e.g., Dr. Rajesh Kumar">
                     </div>
                     <div class="form-group">
                       <label class="form-label">Class Type *</label>
@@ -1207,7 +1394,9 @@
                 <div class="card-title">📋 Current Timetable</div>
               </div>
               <div class="card-body" id="timetableView">
-                <div class="loading"><div class="spinner"></div></div>
+                <div class="loading">
+                  <div class="spinner"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -1259,7 +1448,8 @@
                     </div>
                     <div class="form-group">
                       <label class="form-label">Book Title *</label>
-                      <input type="text" class="form-input" name="title" required placeholder="e.g., Introduction to Algorithms">
+                      <input type="text" class="form-input" name="title" required
+                        placeholder="e.g., Introduction to Algorithms">
                     </div>
                     <div class="form-group">
                       <label class="form-label">Author *</label>
@@ -1295,7 +1485,8 @@
                     </div>
                     <div class="form-group full">
                       <label class="form-label">Content *</label>
-                      <textarea class="form-input" name="content" required rows="4" placeholder="Enter notice content..."></textarea>
+                      <textarea class="form-input" name="content" required rows="4"
+                        placeholder="Enter notice content..."></textarea>
                     </div>
                     <div class="form-group">
                       <label class="form-label">Type *</label>
@@ -1349,11 +1540,13 @@
                     </div>
                     <div class="form-group">
                       <label class="form-label">Professor *</label>
-                      <input type="text" class="form-input" name="professor" required placeholder="e.g., Dr. Rajesh Kumar">
+                      <input type="text" class="form-input" name="professor" required
+                        placeholder="e.g., Dr. Rajesh Kumar">
                     </div>
                     <div class="form-group">
                       <label class="form-label">Schedule *</label>
-                      <input type="text" class="form-input" name="schedule" required placeholder="e.g., Mon, Wed 9-10 AM">
+                      <input type="text" class="form-input" name="schedule" required
+                        placeholder="e.g., Mon, Wed 9-10 AM">
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary">➕ Add Course</button>
@@ -1426,16 +1619,17 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-        <button class="btn btn-primary" onclick="document.getElementById('editStudentForm').requestSubmit()">💾 Save Changes</button>
+        <button class="btn btn-primary" onclick="document.getElementById('editStudentForm').requestSubmit()">💾 Save
+          Changes</button>
       </div>
     </div>
   </div>
 
   <script>
     // Configuration
-    const API = 'http://localhost:8000/api/admin';
+    const API = '/api/admin';
     const toastContainer = document.getElementById('toastContainer');
-    
+
     // Admin Credentials (In production, this should be handled by backend)
     const ADMIN_CREDENTIALS = {
       username: 'admin',
@@ -1518,7 +1712,7 @@
         document.getElementById('pageTitle').textContent = item.querySelector('span:last-of-type').textContent;
         document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
         document.getElementById(`page-${page}`).classList.add('active');
-        
+
         // Load data for the page
         if (page === 'students') loadStudents();
         if (page === 'notices') loadNotices();
@@ -1548,19 +1742,19 @@
       try {
         const res = await fetch(`${API}/students`);
         const data = await res.json();
-        
+
         // Stats
         const total = data.total;
         const avgCgpa = total > 0 ? (data.students.reduce((a, s) => a + s.cgpa, 0) / total).toFixed(2) : 0;
         const avgAtt = total > 0 ? Math.round(data.students.reduce((a, s) => a + s.attendance, 0) / total) : 0;
-        
+
         document.getElementById('studentStats').innerHTML = `
           <div class="stat-card green"><div class="icon">👥</div><div class="value">${total}</div><div class="label">Total Students</div></div>
           <div class="stat-card blue"><div class="icon">🎓</div><div class="value">${avgCgpa}</div><div class="label">Avg CGPA</div></div>
           <div class="stat-card purple"><div class="icon">📊</div><div class="value">${avgAtt}%</div><div class="label">Avg Attendance</div></div>
           <div class="stat-card orange"><div class="icon">📚</div><div class="value">9</div><div class="label">Courses</div></div>
         `;
-        
+
         // Table
         if (data.students.length === 0) {
           document.getElementById('studentTableBody').innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--text-muted)">No students found. Add a new student to get started!</td></tr>';
@@ -1591,7 +1785,7 @@
       const form = e.target;
       const data = Object.fromEntries(new FormData(form));
       data.cgpa = parseFloat(data.cgpa) || 0;
-      
+
       try {
         const res = await fetch(`${API}/student`, {
           method: 'POST',
@@ -1618,7 +1812,7 @@
         const res = await fetch(`${API}/student/${key}`);
         const data = await res.json();
         const s = data.student;
-        
+
         document.getElementById('editOriginalKey').value = key;
         document.getElementById('editName').value = s.name;
         document.getElementById('editRollNo').value = s.roll_no;
@@ -1631,7 +1825,7 @@
         document.getElementById('editDob').value = s.dob;
         document.getElementById('editCgpa').value = s.cgpa;
         document.getElementById('editAddress').value = s.address;
-        
+
         document.getElementById('editModal').classList.add('active');
       } catch (err) {
         showToast('Failed to load student', 'error');
@@ -1646,7 +1840,7 @@
       const key = data.original_key;
       delete data.original_key;
       data.cgpa = parseFloat(data.cgpa) || 0;
-      
+
       try {
         const res = await fetch(`${API}/student/${key}`, {
           method: 'PUT',
@@ -1669,7 +1863,7 @@
     // Delete Student
     async function deleteStudent(key) {
       if (!confirm('Are you sure you want to delete this student?')) return;
-      
+
       try {
         const res = await fetch(`${API}/student/${key}`, { method: 'DELETE' });
         const result = await res.json();
@@ -1692,7 +1886,7 @@
       const data = Object.fromEntries(new FormData(form));
       data.present = parseInt(data.present);
       data.total = parseInt(data.total);
-      
+
       try {
         const res = await fetch(`${API}/attendance`, {
           method: 'POST',
@@ -1718,7 +1912,7 @@
       const data = Object.fromEntries(new FormData(form));
       data.marks = parseInt(data.marks);
       data.credits = parseInt(data.credits);
-      
+
       try {
         const res = await fetch(`${API}/grade`, {
           method: 'POST',
@@ -1743,7 +1937,7 @@
       const form = e.target;
       const data = Object.fromEntries(new FormData(form));
       data.days_left = parseInt(data.days_left);
-      
+
       try {
         const res = await fetch(`${API}/exam`, {
           method: 'POST',
@@ -1767,7 +1961,7 @@
       e.preventDefault();
       const form = e.target;
       const data = Object.fromEntries(new FormData(form));
-      
+
       try {
         const res = await fetch(`${API}/timetable/${data.day}?time=${encodeURIComponent(data.time)}&course=${encodeURIComponent(data.course)}&room=${encodeURIComponent(data.room)}&professor=${encodeURIComponent(data.professor)}&class_type=${encodeURIComponent(data.class_type)}`, {
           method: 'POST'
@@ -1791,10 +1985,10 @@
         const res = await fetch(`${API}/timetable`);
         const data = await res.json();
         const timetable = data.timetable;
-        
+
         let html = '';
         const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
-        
+
         days.forEach(day => {
           if (timetable[day] && timetable[day].length > 0) {
             html += `<div style="margin-bottom:16px"><strong style="color:var(--accent-secondary);text-transform:capitalize">${day}</strong>`;
@@ -1809,7 +2003,7 @@
             html += '</div>';
           }
         });
-        
+
         document.getElementById('timetableView').innerHTML = html || '<p style="color:var(--text-muted)">No classes scheduled yet.</p>';
       } catch (err) {
         document.getElementById('timetableView').innerHTML = '<p style="color:var(--error)">Failed to load timetable</p>';
@@ -1823,7 +2017,7 @@
       const data = Object.fromEntries(new FormData(form));
       data.total_fee = parseInt(data.total_fee);
       data.paid = parseInt(data.paid);
-      
+
       try {
         const res = await fetch(`${API}/fees`, {
           method: 'POST',
@@ -1847,7 +2041,7 @@
       e.preventDefault();
       const form = e.target;
       const data = Object.fromEntries(new FormData(form));
-      
+
       try {
         const res = await fetch(`${API}/library/book`, {
           method: 'POST',
@@ -1871,7 +2065,7 @@
       e.preventDefault();
       const form = e.target;
       const data = Object.fromEntries(new FormData(form));
-      
+
       try {
         const res = await fetch(`${API}/notice`, {
           method: 'POST',
@@ -1929,7 +2123,7 @@
       const studentKey = data.student_key;
       delete data.student_key;
       data.credits = parseInt(data.credits);
-      
+
       try {
         const res = await fetch(`${API}/course/${studentKey}`, {
           method: 'POST',
@@ -1963,4 +2157,5 @@
     });
   </script>
 </body>
+
 </html>
